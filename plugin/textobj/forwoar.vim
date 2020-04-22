@@ -14,7 +14,8 @@ set cpo&vim
 " Interface  "{{{1
 call textobj#user#plugin('forward', {
 \      '-': {
-\        'select-i': 'i;',  '*select-i-function*': 'textobj#forward#select',
+\        'select-i': 'i;',  '*select-i-function*': 'textobj#forward#select_i',
+\        'select-a': 'a;',  '*select-a-function*': 'textobj#forward#select_a',
 \      }
 \    })
 

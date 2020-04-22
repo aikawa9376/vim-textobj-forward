@@ -6,14 +6,23 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-function! textobj#forward#select()
-  return s:select()
+function! textobj#forward#select_i()
+  return s:select('i')
 endfunction
 
-function! s:select()
+function! textobj#forward#select_a()
+  return s:select('a')
+endfunction
+
+function! s:select(flag)
   try
     let start = getpos('.')
-    let pat = '\V\((\|)\|<\|>,\|.\| \|''\)'
+
+    if a:flag == 'i'
+      let pat = '\V\((\|<\|{\|[\|,\|;\)'
+    else
+      let pat = '\V\( \|''\|/\||\)'
+    endif
 
     for i in range(v:count1)
       if !search(pat, 'W')
